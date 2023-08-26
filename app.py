@@ -5,7 +5,7 @@ from json import dump
 from requests import get
 
 
-INDEX = "https://docs.google.com/spreadsheets/d/1YLPiKODcjiSdY-z6nUn9SXbsGM_wfrvtsDITZ2rzNA4/export?gid=0&format=csv"
+INDEX = "https://docs.google.com/spreadsheets/d/1Ww9HZIDw_sXkg7kSToO132rcPlHlgg9L4JDR8kLsV7U/export?gid=0&format=csv"
 
 app = Flask(__name__)
 
