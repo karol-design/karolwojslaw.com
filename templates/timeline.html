@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block container %}
+<!-- This timeline.html file extends the base.html file, and is where the timeline content is generated. 
+  The Jinja2 templating language is used to generate the HTML content from the data in the CSV files. -->
+{% for theme, articles in articles_by_theme.items() %}
+<!-- THEME -->
+<div class="column">
+  <div class="row theme-row" id="{{ theme }}">
+    <div class="column theme-column">
+      <div class="theme-sticky">
+        <h1><a class="arrow up">&#60;</a>{{ theme }}<a class="arrow down">&#62;</a></h1>
+      </div>
+    </div>
+    <!-- ARTICLES -->
+    <div class="column article-column">
+      {% for article_ID, article in articles.items() %}
+      <!-- ARTICLE -->
+      <div class="row article-row" id="{{ article_ID }}">
+        <div class="article-sticky">
+          <h2 class="date"><a class="arrow left">&#60;</a>{{ article['date'] }}<a class="arrow right">&#62;</a></h2>
+          <h2 class="shorttitle">{{ article['shorttitle'] }}</h2>
+          <h4 class="duration">{{ article['duration'] }}</h4>
+          <span class="location">{{ article['location'] }}</span>
+          <span class="skills">
+            {% for skill in article['skills'] %}
+            <span class="skill">{{ skill }}</span>
+            {% endfor %}
+          </span>
+          <span class="heading">{{ article['heading'] }}</span>
+          <span class="bullets">
+            <ul>
+              {% for bullet in article['bullets'] %}
+              <li>{{ bullet }}</li>
+              {% endfor %}
+            </ul>
+          </span>
+          <span class="thanks">{{ article['thanks'] }}</span>
+        </div>
+        <div class="article-body">
+          <h2 class="title">{{ article['title'] }}</h2>
+          <h3 class="subtitle">{{ article['subtitle'] }}</h3>
+          {% for (media, text) in article['body'] %} {% if media[0] != "" %}
+          <div class="splide">
+            <div class="splide__track">
+              <ul class="splide__list">
+                {% for item in media %} {{ item }} {% endfor %}
+              </ul>
+            </div>
+          </div>
+          {% endif %} {% if text[0] != "" %}
+          <span class="text">{{ text }}</span>
+          {% endif %} {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endfor %} {% endblock %}
